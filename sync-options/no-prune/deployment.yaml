@@ -3,17 +3,19 @@ kind: Deployment
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: Prune=false
-  name: guestbook-ui
+  name: guestbook-ui-no-prune
+  labels:
+    app: guestbook-ui-no-prune
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: guestbook-ui
+      app: guestbook-ui-no-prune
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: guestbook-ui-no-prune
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
